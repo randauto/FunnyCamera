@@ -32,7 +32,7 @@ public class FBO {
         this.depthID = db[0];
         GLES20.glBindRenderbuffer(36161, this.depthID);
         GLES20.glRenderbufferStorage(36161, 33189, width, height);
-        C0006IO.m15GL("glRenderbufferStorage (深度Buffer)");
+        RawResourceReader.m15GL("glRenderbufferStorage (深度Buffer)");
         GLES20.glBindRenderbuffer(36161, 0);
         int[] fb = new int[1];
         GLES20.glGenFramebuffers(1, fb, 0);
@@ -41,7 +41,7 @@ public class FBO {
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.textureID, 0);
         GLES20.glFramebufferRenderbuffer(36160, 36096, 36161, this.depthID);
         if (GLES20.glCheckFramebufferStatus(36160) != 36053) {
-            C0006IO.m15GL("glCheckFramebufferStatus");
+            RawResourceReader.m15GL("glCheckFramebufferStatus");
         }
         GLES20.glBindFramebuffer(36160, 0);
         this.f56 = new Obj2D(this.textureID);

@@ -29,14 +29,14 @@
         android:textColor="#ffffff00" />
 
     <CheckBox
-        android:id="@+id/checkBox網格"
+        android:id="@+id/checkBoxGrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/view"
         android:layout_alignBottom="@+id/view"
         android:checked="false"
         android:clickable="true"
-        android:text="網格" />
+        android:text="Grid" />
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
@@ -80,18 +80,18 @@
                 android:onClick="OnPause" />
 
             <com.bip.funnycamera.lib.ImageButtonPlus
-                android:id="@+id/imageButton凸"
+                android:id="@+id/imageButtonConvex"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:background="@drawable/zoom_in"
-                android:onClick="On凸" />
+                android:onClick="onConvex" />
 
             <com.bip.funnycamera.lib.ImageButtonPlus
-                android:id="@+id/imageButton凹"
+                android:id="@+id/imageButtonConcave"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:background="@drawable/zoom_out"
-                android:onClick="On凹" />
+                android:onClick="onConcave" />
 
             <com.bip.funnycamera.lib.ImageButtonPlus
                 android:id="@+id/imageButton拉扯"

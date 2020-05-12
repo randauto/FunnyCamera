@@ -13,13 +13,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-public final class C0006IO {
+public final class RawResourceReader {
     static double P_old;
     static long TotalTime_old;
     static long UseTime_old;
@@ -98,6 +99,30 @@ public final class C0006IO {
                 return null;
             }
         }
+    }
+
+    public static String readTextFileFromRawResourceOld(final Context context,
+                                                        final int resourceId) {
+        final InputStream inputStream = context.getResources().openRawResource(
+                resourceId);
+        final InputStreamReader inputStreamReader = new InputStreamReader(
+                inputStream);
+        final BufferedReader bufferedReader = new BufferedReader(
+                inputStreamReader);
+
+        String nextLine;
+        final StringBuilder body = new StringBuilder();
+
+        try {
+            while ((nextLine = bufferedReader.readLine()) != null) {
+                body.append(nextLine);
+                body.append('\n');
+            }
+        } catch (IOException e) {
+            return null;
+        }
+
+        return body.toString();
     }
 
     public static void m15GL(String glOperation) {

@@ -12,7 +12,7 @@ public class Cursor extends Model {
     private static final float f47 = 0.5f;
     private static final float[] f5VB = {0.31175f, -0.39092f, 0.0f, 0.90097f, -0.43388f, 0.0f, f47, 0.0f, 0.0f, -0.45048f, -0.21694f, 0.0f, -0.62349f, -0.78183f, 0.0f, -0.11126f, -0.48746f, 0.0f, -0.45048f, 0.21694f, 0.0f, -1.0f, 0.0f, 0.0f, -0.11126f, 0.48746f, 0.0f, -0.62349f, 0.78183f, 0.0f, 0.31174f, 0.39092f, 0.0f, 0.22252f, 0.97493f, 0.0f, 0.22252f, -0.97493f, 0.0f, 0.90097f, 0.43388f, 0.0f};
     private static float[] mLines = {0.0f, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f};
-    private static FloatBuffer VB_line = C0006IO.DirectBuffer(mLines);
+    private static FloatBuffer VB_line = RawResourceReader.DirectBuffer(mLines);
 
 
     private static final float f48 = 0.07f;

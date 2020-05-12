@@ -14,6 +14,10 @@ import android.view.View;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
+import static android.opengl.GLES10.GL_TEXTURE0;
+import static android.opengl.GLES20.GL_CULL_FACE;
+import static android.opengl.GLES20.GL_DEPTH_TEST;
+
 public class HoGLSurfaceView extends GLSurfaceView implements Renderer {
     public static HoGLSurfaceView GlobalSurfaceView;
     public double FPS;
@@ -38,13 +42,13 @@ public class HoGLSurfaceView extends GLSurfaceView implements Renderer {
 
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         GLES20.glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-        C0006IO.m15GL("glClearColor");
-        GLES20.glEnable(2929);
-        C0006IO.m15GL("glEnable GL_DEPTH_TEST");
-        GLES20.glEnable(2884);
-        C0006IO.m15GL("glEnable GL_CULL_FACE");
-        GLES20.glActiveTexture(33984);
-        C0006IO.m15GL("glActiveTexture GL_TEXTURE0");
+        RawResourceReader.m15GL("glClearColor");
+        GLES20.glEnable(GL_DEPTH_TEST);
+        RawResourceReader.m15GL("glEnable GL_DEPTH_TEST");
+        GLES20.glEnable(GL_CULL_FACE);
+        RawResourceReader.m15GL("glEnable GL_CULL_FACE");
+        GLES20.glActiveTexture(GL_TEXTURE0);
+        RawResourceReader.m15GL("glActiveTexture GL_TEXTURE0");
     }
 
     public void onSurfaceChanged(GL10 gl, int width, int height) {

@@ -90,7 +90,7 @@ public class Camera extends GlObject {
         this.IB_L = tmp3.asShortBuffer();
         this.IB_L.put(this.mIB_L);
         this.IB_L.position(f30_X);
-        this.TextureID = C0006IO.CreateCameraTexture2D();
+        this.TextureID = RawResourceReader.CreateCameraTexture2D();
         this.mCameraTexture = new CameraTexture(this.TextureID);
         GLES20.glDisable(2884);
     }

@@ -26,7 +26,7 @@ public class Obj2D extends GlObject {
     public Obj2D(Bitmap bmp) {
         super(f15VS, f14PS);
         m17();
-        this.TextureID = C0006IO.CreateTexture2D(bmp);
+        this.TextureID = RawResourceReader.CreateTexture2D(bmp);
     }
 
     private void m17() {

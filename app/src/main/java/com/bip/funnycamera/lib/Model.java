@@ -19,8 +19,8 @@ public class Model extends GlObject {
 
     public Model(float[] vb, short[] ib) {
         super(f11VS, f10PS);
-        this.f13VB = C0006IO.DirectBuffer(vb);
-        this.f12IB = C0006IO.DirectBuffer(ib);
+        this.f13VB = RawResourceReader.DirectBuffer(vb);
+        this.f12IB = RawResourceReader.DirectBuffer(ib);
         this.f59 = ib.length;
     }
 

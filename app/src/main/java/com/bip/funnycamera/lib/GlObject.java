@@ -2,13 +2,14 @@ package com.bip.funnycamera.lib;
 
 import android.content.Context;
 import android.opengl.GLES20;
+import android.util.Log;
 
-import static android.opengl.GLES20.GL_COMPILE_STATUS;
 import static android.opengl.GLES20.GL_FRAGMENT_SHADER;
 import static android.opengl.GLES20.GL_VERTEX_SHADER;
 
 public class GlObject {
     public static final float[] Identity = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
+    private static final String TAG = "GlObject: ";
     public float[] Color = {1.0f, 1.0f, 1.0f, 1.0f};
     protected int TextureID;
     protected int aColorHandle;
@@ -26,12 +27,12 @@ public class GlObject {
     }
 
     public GlObject(Context context2, int VS, int PS) {
-        m12(C0006IO.readTextFileFromRawResource(context2, VS), C0006IO.readTextFileFromRawResource(context2, PS));
+        m12(RawResourceReader.readTextFileFromRawResourceOld(context2, VS), RawResourceReader.readTextFileFromRawResourceOld(context2, PS));
     }
 
     private void m12(String VS, String PS) {
-        int vertexShader = m13(GL_VERTEX_SHADER, VS);
-        int fragmentShader = m13(GL_FRAGMENT_SHADER, PS);
+        int vertexShader = loadShader(GL_VERTEX_SHADER, VS);
+        int fragmentShader = loadShader(GL_FRAGMENT_SHADER, PS);
         this.mProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(this.mProgram, vertexShader);
         GLES20.glAttachShader(this.mProgram, fragmentShader);
@@ -45,7 +46,7 @@ public class GlObject {
         this.uMVPMatrixHandle = GLES20.glGetUniformLocation(this.mProgram, "uMVPMatrix");
         this.uTextureHandle = GLES20.glGetUniformLocation(this.mProgram, "uTexture");
         this.uColorHandle = GLES20.glGetUniformLocation(this.mProgram, "uColor");
-        C0006IO.m15GL("GlObject.共用建構子(VS,PS)");
+        RawResourceReader.m15GL("GlObject.共用建構子(VS,PS)");
     }
 
     public void SetColor(float R, float G, float B, float A) {
@@ -55,18 +56,23 @@ public class GlObject {
         this.Color[3] = A;
     }
 
-    public static int m13(int type, String str) {
-        int shader = GLES20.glCreateShader(type);
-        GLES20.glShaderSource(shader, str);
-        GLES20.glCompileShader(shader);
-        int[] compiled = new int[1];
-        GLES20.glGetShaderiv(shader, GL_COMPILE_STATUS, compiled, 0);
-        if (compiled[0] != 0) {
-            return shader;
+    public static int loadShader(int shaderType, String source) {
+        int shader = GLES20.glCreateShader(shaderType);
+        if (shader != 0) {
+            GLES20.glShaderSource(shader, source);
+            GLES20.glCompileShader(shader);
+            int[] compiled = new int[1];
+            GLES20.glGetShaderiv(shader, GLES20.GL_COMPILE_STATUS, compiled, 0);
+            if (compiled[0] == 0) {
+                Log.e(TAG, "Could not compile shader " + shaderType + ":");
+                Log.e(TAG, GLES20.glGetShaderInfoLog(shader));
+                GLES20.glDeleteShader(shader);
+                shader = 0;
+            }
         }
-        GLES20.glGetShaderiv(shader, 35716, compiled, 0);
-        throw new RuntimeException("Shade Compile Fail...\r\n" + GLES20.glGetShaderInfoLog(shader));
+        return shader;
     }
+
 
     public static float[] m11Matrix(float x, float y, float z) {
         return new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, x, y, z, 1.0f};

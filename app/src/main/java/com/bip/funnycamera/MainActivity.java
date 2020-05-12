@@ -49,8 +49,8 @@ public class MainActivity extends Activity {
             }
         };
         this.btns = new ImageButtonPlus[4];
-        this.btns[0] = (ImageButtonPlus) findViewById(R.id.imageButton凸);
-        this.btns[1] = (ImageButtonPlus) findViewById(R.id.imageButton凹);
+        this.btns[0] = (ImageButtonPlus) findViewById(R.id.imageButtonConvex);
+        this.btns[1] = (ImageButtonPlus) findViewById(R.id.imageButtonConcave);
         this.btns[2] = (ImageButtonPlus) findViewById(R.id.imageButton拉扯);
         this.btns[3] = (ImageButtonPlus) findViewById(R.id.imageButton扭轉);
         this.btns[0].f57Enabled = true;
@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
             Camera r0 = this.mgs.mCamera;
             String format = String.format("GL:%.2f , CAM:%.2f 對焦=%d", new Object[]{Double.valueOf(this.mgs.FPS), Double.valueOf(r0.mCameraTexture.FPS), Integer.valueOf(r0.mCameraTexture.f23)});
             this.fps.setText(String.format("fps:%.2f", new Object[]{Double.valueOf(this.mgs.FPS)}));
-            r0.f46 = ((CheckBox) findViewById(R.id.checkBox網格)).isChecked();
+            r0.f46 = ((CheckBox) findViewById(R.id.checkBoxGrid)).isChecked();
             if (this.mgs.f67bitmap != null) {
                 SaveFile(this.mgs.f67bitmap);
                 this.mgs.f67bitmap = null;
@@ -94,14 +94,13 @@ public class MainActivity extends Activity {
         this.mgs.mCamera.f3 = !this.mgs.mCamera.f3;
     }
 
-    /* renamed from: On凸 reason: contains not printable characters */
-    public void m20On(View v) {
+    public void onConvex(View v) {
         this.mgs.Mode = MODE.MODE_1;
         this.mgs.f68 = 0.001f;
         m18(v);
     }
 
-    public void m21On(View v) {
+    public void onConcave(View v) {
         this.mgs.Mode = MODE.MODE_2;
         this.mgs.f68 = -0.001f;
         m18(v);
@@ -113,7 +112,7 @@ public class MainActivity extends Activity {
         m18(v);
     }
 
-    public void m22On(View v) {
+    public void Reverse(View v) {
         this.mgs.Mode = MODE.MODE_4;
         m18(v);
     }
