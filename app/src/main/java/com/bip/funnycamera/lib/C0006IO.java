@@ -6,7 +6,9 @@ import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.util.Log;
-import com.p000ho.p001ho.magcamera.BuildConfig;
+
+import com.bip.funnycamera.BuildConfig;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,17 +19,14 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-/* renamed from: com.ho.ho.holib.IO */
 public final class C0006IO {
     static double P_old;
     static long TotalTime_old;
     static long UseTime_old;
     static final File file = new File("proc/stat");
 
-    /* renamed from: fr */
     static FileReader f9fr = null;
 
-    /* renamed from: GetCPU使用率 reason: contains not printable characters */
     public static final String m14GetCPU() {
         try {
             String[] split = new BufferedReader(new FileReader(file)).readLine().split("\\s+");
@@ -101,7 +100,6 @@ public final class C0006IO {
         }
     }
 
-    /* renamed from: 檢查GL錯誤 reason: contains not printable characters */
     public static void m15GL(String glOperation) {
         int error = GLES20.glGetError();
         if (error != 0) {
@@ -110,7 +108,7 @@ public final class C0006IO {
                 errStr = errStr + error + " , ";
                 error = GLES20.glGetError();
             }
-            Log.e("檢查 OpenGL : " + glOperation, errStr);
+            Log.e("Check OpenGL : " + glOperation, errStr);
         }
     }
 

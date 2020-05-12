@@ -1,12 +1,10 @@
 package com.bip.funnycamera.lib;
 
-/* renamed from: com.ho.ho.holib.FPS */
 public class FPS {
     long dtime = 0;
     double fps = 0.0d;
     long oldt = System.nanoTime();
 
-    /* renamed from: tc */
     int f7tc = 0;
 
     public double Update() {

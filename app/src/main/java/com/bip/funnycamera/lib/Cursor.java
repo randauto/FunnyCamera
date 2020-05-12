@@ -2,45 +2,34 @@ package com.bip.funnycamera.lib;
 
 import android.opengl.GLES20;
 import android.opengl.Matrix;
+
 import java.nio.FloatBuffer;
 
-/* renamed from: com.ho.ho.holib.Cursor */
 public class Cursor extends Model {
 
-    /* renamed from: IB */
     private static final short[] f4IB = {0, 1, 2, 3, 4, 5, 6, 7, 3, 8, 9, 6, 10, 11, 8, 5, 12, 0, 2, 13, 10, 10, 8, 6, 2, 10, 6, 2, 6, 3, 2, 3, 5, 2, 5, 0};
 
-    /* renamed from: VB */
-    private static final float[] f5VB = {0.31175f, -0.39092f, 0.0f, 0.90097f, -0.43388f, 0.0f, f47, 0.0f, 0.0f, -0.45048f, -0.21694f, 0.0f, -0.62349f, -0.78183f, 0.0f, -0.11126f, -0.48746f, 0.0f, -0.45048f, 0.21694f, 0.0f, -1.0f, 0.0f, 0.0f, -0.11126f, 0.48746f, 0.0f, -0.62349f, 0.78183f, 0.0f, 0.31174f, 0.39092f, 0.0f, 0.22252f, 0.97493f, 0.0f, 0.22252f, -0.97493f, 0.0f, 0.90097f, 0.43388f, 0.0f};
-    private static FloatBuffer VB_line = C0006IO.DirectBuffer(mLines);
-    private static float[] mLines = {0.0f, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f};
-
-    /* renamed from: 最大半徑 reason: contains not printable characters */
     private static final float f47 = 0.5f;
+    private static final float[] f5VB = {0.31175f, -0.39092f, 0.0f, 0.90097f, -0.43388f, 0.0f, f47, 0.0f, 0.0f, -0.45048f, -0.21694f, 0.0f, -0.62349f, -0.78183f, 0.0f, -0.11126f, -0.48746f, 0.0f, -0.45048f, 0.21694f, 0.0f, -1.0f, 0.0f, 0.0f, -0.11126f, 0.48746f, 0.0f, -0.62349f, 0.78183f, 0.0f, 0.31174f, 0.39092f, 0.0f, 0.22252f, 0.97493f, 0.0f, 0.22252f, -0.97493f, 0.0f, 0.90097f, 0.43388f, 0.0f};
+    private static float[] mLines = {0.0f, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f};
+    private static FloatBuffer VB_line = C0006IO.DirectBuffer(mLines);
 
-    /* renamed from: 最小半徑 reason: contains not printable characters */
+
     private static final float f48 = 0.07f;
 
-    /* renamed from: 變化率 reason: contains not printable characters */
     private static final float f49 = 0.07692308f;
     private float mAngle;
 
-    /* renamed from: 中點游標 reason: contains not printable characters */
     public boolean f50 = false;
 
-    /* renamed from: 終點X reason: contains not printable characters */
     private float f51X;
 
-    /* renamed from: 終點Y reason: contains not printable characters */
     private float f52Y;
 
-    /* renamed from: 變化值 reason: contains not printable characters */
     private float f53 = 1.0f;
 
-    /* renamed from: 起點X reason: contains not printable characters */
     private float f54X;
 
-    /* renamed from: 起點Y reason: contains not printable characters */
     private float f55Y;
 
     public Cursor() {
@@ -101,13 +90,11 @@ public class Cursor extends Model {
         this.f53 = 1.0f;
     }
 
-    /* renamed from: set起點 reason: contains not printable characters */
     public void m10set(float x, float y) {
         this.f54X = x;
         this.f55Y = y;
     }
 
-    /* renamed from: set終點 reason: contains not printable characters */
     public void m9set(float x, float y) {
         this.f51X = x;
         this.f52Y = y;

@@ -1,6 +1,5 @@
 package com.bip.funnycamera.lib;
 
-/* renamed from: com.ho.ho.holib.Random32 */
 public class Random32 {
     private static int SeedCount;
     private int Seed = (((int) System.nanoTime()) + SeedCount);

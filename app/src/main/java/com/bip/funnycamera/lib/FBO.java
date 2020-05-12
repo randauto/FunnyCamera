@@ -2,7 +2,6 @@ package com.bip.funnycamera.lib;
 
 import android.opengl.GLES20;
 
-/* renamed from: com.ho.ho.holib.FBO */
 public class FBO {
     private int[] BackupViewport = new int[4];
     public int Height;

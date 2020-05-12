@@ -3,40 +3,32 @@ package com.bip.funnycamera.lib;
 import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
-import com.p000ho.p001ho.magcamera.C0010R;
+
+import com.bip.funnycamera.R;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-/* renamed from: com.ho.ho.holib.Camera平面網 reason: invalid class name */
 public class Camera extends GlObject {
 
-    /* renamed from: 定位加速比 reason: contains not printable characters */
     private static final float f28 = 0.1f;
 
-    /* renamed from: 定位衰減 reason: contains not printable characters */
     private static final float f29 = 0.9f;
 
-    /* renamed from: 網點_X reason: contains not printable characters */
     private static final int f30_X = 0;
 
-    /* renamed from: 網點_Y reason: contains not printable characters */
     private static final int f31_Y = 1;
 
-    /* renamed from: 網點_oX reason: contains not printable characters */
     private static final int f32_oX = 2;
 
-    /* renamed from: 網點_oY reason: contains not printable characters */
     private static final int f33_oY = 3;
 
-    /* renamed from: 網點_sX reason: contains not printable characters */
     private static final int f34_sX = 4;
 
-    /* renamed from: 網點_sY reason: contains not printable characters */
     private static final int f35_sY = 5;
 
-    /* renamed from: 網點資訊元素 reason: contains not printable characters */
     private static final int f36 = 6;
     public float[] Color = {0.7f, 0.7f, 0.7f, 1.0f};
 
@@ -56,42 +48,31 @@ public class Camera extends GlObject {
     float[] f2mm = new float[4];
     float[] mmo = new float[4];
 
-    /* renamed from: m網點資訊 reason: contains not printable characters */
     private float[] f37m;
     Random32 rnd = new Random32();
 
-    /* renamed from: 分割X reason: contains not printable characters */
     private int f38X;
 
-    /* renamed from: 分割Y reason: contains not printable characters */
     private int f39Y;
 
-    /* renamed from: 扭轉起始角 reason: contains not printable characters */
     private double f40;
 
-    /* renamed from: 拉扯起點X reason: contains not printable characters */
     private float f41X;
 
-    /* renamed from: 拉扯起點Y reason: contains not printable characters */
     private float f42Y;
 
-    /* renamed from: 暫停 */
     public boolean f3 = false;
 
-    /* renamed from: 總三角數 reason: contains not printable characters */
     private int f43;
 
-    /* renamed from: 總頂點數 reason: contains not printable characters */
     private int f44;
 
-    /* renamed from: 邊緣值 reason: contains not printable characters */
     private final float f45 = 0.98f;
 
-    /* renamed from: 顯示網格 reason: contains not printable characters */
     public boolean f46 = false;
 
     public Camera(Context context, int cX, int cY) {
-        super(context, C0010R.raw.o2d_vertex, C0010R.raw.camera_fragment);
+        super(context, R.raw.o2d_vertex, R.raw.camera_fragment);
         this.f38X = cX;
         this.f39Y = cY;
         CreateMesh();
@@ -126,13 +107,13 @@ public class Camera extends GlObject {
         this.f1VB.position(f30_X);
         GLES20.glVertexAttribPointer(this.aPositionHandle, f33_oY, 5126, false, 20, this.f1VB);
         this.f1VB.position(f33_oY);
-        r8 = f30_X;
+//        r8 = f30_X;
         GLES20.glVertexAttribPointer(this.aUVHandle, f32_oX, 5126, false, 20, this.f1VB);
         float[] mm = new float[16];
-        r8 = f30_X;
+//        r8 = f30_X;
         float[] fArr = mvpMatrix;
-        r10 = f30_X;
-        r12 = f30_X;
+//        r10 = f30_X;
+//        r12 = f30_X;
         Matrix.multiplyMM(mm, f30_X, fArr, f30_X, this.mCameraTexture.f26, f30_X);
         GLES20.glUniformMatrix4fv(this.uMVPMatrixHandle, f31_Y, false, mm, f30_X);
         GLES20.glBindTexture(36197, this.TextureID);
@@ -187,7 +168,6 @@ public class Camera extends GlObject {
         }
     }
 
-    /* renamed from: 網點Next reason: contains not printable characters */
     private void m4Next() {
         int n = f30_X;
         for (int i = f30_X; i < this.f44; i += f31_Y) {
@@ -213,7 +193,6 @@ public class Camera extends GlObject {
         }
     }
 
-    /* renamed from: 網點_to_mVB reason: contains not printable characters */
     private void m5_to_mVB() {
         int n1 = f30_X;
         int n2 = f30_X;
@@ -250,7 +229,6 @@ public class Camera extends GlObject {
         }
     }
 
-    /* renamed from: 網點恢復 reason: contains not printable characters */
     public void m8() {
         int n = f30_X;
         for (int y = f30_X; y <= this.f39Y; y += f31_Y) {
@@ -262,7 +240,6 @@ public class Camera extends GlObject {
         }
     }
 
-    /* renamed from: 擾動 */
     public void mo12() {
         m8();
         int n = f30_X;
@@ -277,7 +254,6 @@ public class Camera extends GlObject {
         }
     }
 
-    /* renamed from: 點擊 */
     public void mo14(float x, float y, float value) {
         this.f2mm[f30_X] = x;
         this.f2mm[f31_Y] = y;
@@ -299,7 +275,6 @@ public class Camera extends GlObject {
         }
     }
 
-    /* renamed from: 拉扯起點 reason: contains not printable characters */
     public void m7(float x, float y) {
         Save();
         this.f2mm[f30_X] = x;
@@ -309,7 +284,6 @@ public class Camera extends GlObject {
         this.f42Y = this.mmo[f31_Y];
     }
 
-    /* renamed from: 拉扯 */
     public void mo10(float tx, float ty, float f) {
         float Tx;
         float Ty;
@@ -348,7 +322,6 @@ public class Camera extends GlObject {
         }
     }
 
-    /* renamed from: 扭轉起點 reason: contains not printable characters */
     public void m6(float x1, float y1, float x2, float y2) {
         Save();
         this.f2mm[f30_X] = x1;
@@ -362,8 +335,7 @@ public class Camera extends GlObject {
         this.f40 = Math.atan2((double) (this.mmo[f30_X] - x12), (double) (this.mmo[f31_Y] - y12));
     }
 
-    /* renamed from: 扭轉 */
-    public void mo8(float x1, float y1, float x2, float y2) {
+    public void Reverse(float x1, float y1, float x2, float y2) {
         this.f2mm[f30_X] = x1;
         this.f2mm[f31_Y] = y1;
         Matrix.multiplyMV(this.mmo, f30_X, this.mCameraTexture.f25, f30_X, this.f2mm, f30_X);

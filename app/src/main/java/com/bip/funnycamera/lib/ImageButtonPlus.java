@@ -5,12 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
 
-/* renamed from: com.ho.ho.holib.ImageButtonPlus */
-public class ImageButtonPlus extends ImageButton {
+public class ImageButtonPlus extends androidx.appcompat.widget.AppCompatImageButton {
 
-    /* renamed from: Enabled框 reason: contains not printable characters */
     public boolean f57Enabled;
     private Paint paint;
 

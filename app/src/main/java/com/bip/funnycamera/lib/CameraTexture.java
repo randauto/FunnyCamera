@@ -2,7 +2,6 @@ package com.bip.funnycamera.lib;
 
 import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
-import android.graphics.SurfaceTexture.OnFrameAvailableListener;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.CameraInfo;
@@ -12,10 +11,10 @@ import android.hardware.Camera.Parameters;
 import android.hardware.Camera.Size;
 import android.opengl.Matrix;
 import android.util.Log;
+
 import java.io.IOException;
 import java.util.List;
 
-/* renamed from: com.ho.ho.holib.CameraTexture */
 public class CameraTexture extends SurfaceTexture {
     protected int CameraID = 0;
     protected int CameraIDs;

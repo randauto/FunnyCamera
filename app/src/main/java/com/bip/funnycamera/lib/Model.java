@@ -1,25 +1,20 @@
 package com.bip.funnycamera.lib;
 
 import android.opengl.GLES20;
+
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
 
-/* renamed from: com.ho.ho.holib.Model */
 public class Model extends GlObject {
 
-    /* renamed from: PS */
     private static final String f10PS = "precision mediump  float ;uniform vec4 uColor;void main()\t{ gl_FragColor= uColor; }";
 
-    /* renamed from: VS */
     private static final String f11VS = "uniform mat4 uMVPMatrix;attribute vec4 aPosition;void main()\t{ gl_Position = uMVPMatrix * aPosition; }";
 
-    /* renamed from: IB */
     private ShortBuffer f12IB;
 
-    /* renamed from: VB */
     private FloatBuffer f13VB;
 
-    /* renamed from: 索引點數 reason: contains not printable characters */
     private int f59;
 
     public Model(float[] vb, short[] ib) {

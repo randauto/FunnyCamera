@@ -7,91 +7,81 @@ import android.hardware.Camera.Size;
 import android.opengl.GLES20;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import com.p000ho.p001ho.holib.Camera;
-import com.p000ho.p001ho.holib.Cursor;
-import com.p000ho.p001ho.holib.FBO;
-import com.p000ho.p001ho.holib.GlObject;
-import com.p000ho.p001ho.holib.HoGLSurfaceView;
+
+import com.bip.funnycamera.lib.Camera;
+import com.bip.funnycamera.lib.Cursor;
+import com.bip.funnycamera.lib.FBO;
+import com.bip.funnycamera.lib.GlObject;
+import com.bip.funnycamera.lib.HoGLSurfaceView;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-/* renamed from: com.ho.ho.magcamera.MagGlSurface */
 public class MagGlSurface extends HoGLSurfaceView {
 
-    /* renamed from: 最小扯距 reason: contains not printable characters */
     static final float f61 = 0.15f;
     public Size FBOsize;
-    public MODE Mode = MODE.f22;
+    public MODE Mode = MODE.MODE_1;
     private float Touch1X;
     private float Touch1X_old;
     private float Touch1Y;
     private float Touch1Y_old;
 
-    /* renamed from: Touch1起點X reason: contains not printable characters */
     private float f62Touch1X;
 
-    /* renamed from: Touch1起點Y reason: contains not printable characters */
     private float f63Touch1Y;
     private float Touch2X;
     private float Touch2X_old;
     private float Touch2Y;
     private float Touch2Y_old;
 
-    /* renamed from: Touch2起點X reason: contains not printable characters */
     private float f64Touch2X;
 
-    /* renamed from: Touch2起點Y reason: contains not printable characters */
     private float f65Touch2Y;
     private Cursor cursor;
     private FBO fbo;
 
-    /* renamed from: 抓圖 */
     public boolean f17 = false;
 
-    /* renamed from: 抓圖Buffer reason: contains not printable characters */
     private ByteBuffer f66Buffer = null;
 
-    /* renamed from: 抓圖bitmap reason: contains not printable characters */
     public Bitmap f67bitmap = null;
 
-    /* renamed from: 網 */
-    public Camera f18;
+    public Camera mCamera;
 
-    /* renamed from: 點擊強度 reason: contains not printable characters */
     public float f68 = 0.001f;
 
-    /* renamed from: com.ho.ho.magcamera.MagGlSurface$1 */
     static /* synthetic */ class C00071 {
         static final /* synthetic */ int[] $SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE = new int[MODE.values().length];
 
         static {
             try {
-                $SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[MODE.f22.ordinal()] = 1;
+                $SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[MODE.MODE_1.ordinal()] = 1;
             } catch (NoSuchFieldError e) {
             }
             try {
-                $SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[MODE.f19.ordinal()] = 2;
+                $SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[MODE.MODE_2.ordinal()] = 2;
             } catch (NoSuchFieldError e2) {
             }
             try {
-                $SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[MODE.f21.ordinal()] = 3;
+                $SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[MODE.MODE_3.ordinal()] = 3;
             } catch (NoSuchFieldError e3) {
             }
             try {
-                $SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[MODE.f20.ordinal()] = 4;
+                $SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[MODE.MODE_4.ordinal()] = 4;
             } catch (NoSuchFieldError e4) {
             }
         }
     }
 
-    /* renamed from: com.ho.ho.magcamera.MagGlSurface$MODE */
     public enum MODE {
-        f22,
-        f19,
-        f21,
-        f20
+        MODE_1,
+        MODE_2,
+        MODE_3,
+        MODE_4
     }
 
     public MagGlSurface(Context context, AttributeSet attrs) {
@@ -100,16 +90,16 @@ public class MagGlSurface extends HoGLSurfaceView {
 
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
         super.onSurfaceCreated(gl, config);
-        this.f18 = new Camera(getContext(), 60, 60);
+        this.mCamera = new Camera(getContext(), 60, 60);
         this.cursor = new Cursor();
-        this.FBOsize = this.f18.mCameraTexture.PreviewSize;
+        this.FBOsize = this.mCamera.mCameraTexture.PreviewSize;
         this.fbo = new FBO(this.FBOsize.height, this.FBOsize.width);
     }
 
     public void onDrawFrame(GL10 gl) {
         super.onDrawFrame(gl);
         this.fbo.Start();
-        this.f18.Draw(GlObject.Identity);
+        this.mCamera.Draw(GlObject.Identity);
         if (this.f17) {
             this.f17 = false;
             this.f66Buffer = ByteBuffer.allocateDirect(this.fbo.Width * this.fbo.Height * 4);
@@ -154,10 +144,10 @@ public class MagGlSurface extends HoGLSurfaceView {
                 switch (C00071.$SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[this.Mode.ordinal()]) {
                     case 1:
                     case 2:
-                        this.f18.mo14(this.Touch1X, this.Touch1Y, this.f68);
+                        this.mCamera.mo14(this.Touch1X, this.Touch1Y, this.f68);
                         break;
                     case 3:
-                        this.f18.m7(this.Touch1X, this.Touch1Y);
+                        this.mCamera.m7(this.Touch1X, this.Touch1Y);
                         break;
                     case BuildConfig.VERSION_CODE /*4*/:
                         this.Touch2X = this.Touch1X;
@@ -172,7 +162,7 @@ public class MagGlSurface extends HoGLSurfaceView {
                     switch (C00071.$SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[this.Mode.ordinal()]) {
                         case 1:
                         case 2:
-                            this.f18.mo14(this.Touch1X, this.Touch1Y, this.f68);
+                            this.mCamera.mo14(this.Touch1X, this.Touch1Y, this.f68);
                             break;
                         case 3:
                             this.cursor.m9set(this.Touch1X, this.Touch1Y);
@@ -181,7 +171,7 @@ public class MagGlSurface extends HoGLSurfaceView {
                             if ((dx * dx) + (dy * dy) < 0.0225f) {
                                 this.cursor.CancelLine();
                             }
-                            this.f18.mo10(this.Touch1X, this.Touch1Y, f61);
+                            this.mCamera.mo10(this.Touch1X, this.Touch1Y, f61);
                             break;
                         case BuildConfig.VERSION_CODE /*4*/:
                             this.cursor.m10set(this.Touch1X, this.Touch1Y);
@@ -191,7 +181,7 @@ public class MagGlSurface extends HoGLSurfaceView {
                             } else {
                                 this.cursor.f50 = true;
                                 this.cursor.m9set(this.Touch2X, this.Touch2Y);
-                                this.f18.mo8(this.Touch1X, this.Touch1Y, this.Touch2X, this.Touch2Y);
+                                this.mCamera.Reverse(this.Touch1X, this.Touch1Y, this.Touch2X, this.Touch2Y);
                                 break;
                             }
                     }
@@ -202,7 +192,7 @@ public class MagGlSurface extends HoGLSurfaceView {
                 this.f65Touch2Y = this.Touch2Y;
                 switch (C00071.$SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[this.Mode.ordinal()]) {
                     case BuildConfig.VERSION_CODE /*4*/:
-                        this.f18.m6(this.Touch1X, this.Touch1Y, this.Touch2X, this.Touch2Y);
+                        this.mCamera.m6(this.Touch1X, this.Touch1Y, this.Touch2X, this.Touch2Y);
                         break;
                 }
         }

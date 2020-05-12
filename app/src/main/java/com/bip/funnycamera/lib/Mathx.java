@@ -1,15 +1,13 @@
 package com.bip.funnycamera.lib;
 
-/* renamed from: com.ho.ho.holib.Mathx */
+
 public final class Mathx {
     public static float[] COS = null;
     public static final float PI2 = 6.2831855f;
     public static float[] SIN = null;
 
-    /* renamed from: 三角函數分割數 reason: contains not printable characters */
     public static final int f58 = 4096;
 
-    /* renamed from: 起始三角函數表 reason: contains not printable characters */
     public static void m16() {
         if (SIN == null) {
             SIN = new float[f58];

@@ -10,11 +10,10 @@ import android.os.Build.VERSION;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-/* renamed from: com.ho.ho.holib.HoGLSurfaceView */
 public class HoGLSurfaceView extends GLSurfaceView implements Renderer {
     public static HoGLSurfaceView GlobalSurfaceView;
     public double FPS;
