@@ -46,9 +46,9 @@ public class MagGlSurface extends HoGLSurfaceView {
 
     public boolean f17 = false;
 
-    private ByteBuffer f66Buffer = null;
+    private ByteBuffer byteBuffer = null;
 
-    public Bitmap f67bitmap = null;
+    public Bitmap imageBitmap = null;
 
     public Camera mCamera;
 
@@ -102,10 +102,10 @@ public class MagGlSurface extends HoGLSurfaceView {
         this.mCamera.Draw(GlObject.Identity);
         if (this.f17) {
             this.f17 = false;
-            this.f66Buffer = ByteBuffer.allocateDirect(this.fbo.Width * this.fbo.Height * 4);
-            this.f66Buffer.order(ByteOrder.nativeOrder());
-            GLES20.glReadPixels(0, 0, this.fbo.Width, this.fbo.Height, 6408, 5121, this.f66Buffer);
-            byte[] src = this.f66Buffer.array();
+            this.byteBuffer = ByteBuffer.allocateDirect(this.fbo.Width * this.fbo.Height * 4);
+            this.byteBuffer.order(ByteOrder.nativeOrder());
+            GLES20.glReadPixels(0, 0, this.fbo.Width, this.fbo.Height, 6408, 5121, this.byteBuffer);
+            byte[] src = this.byteBuffer.array();
             int[] tmp = new int[(this.fbo.Width * this.fbo.Height)];
             int srci = 0;
             int desi = this.fbo.Width * (this.fbo.Height - 1);
@@ -116,7 +116,7 @@ public class MagGlSurface extends HoGLSurfaceView {
                 }
                 desi -= this.fbo.Width;
             }
-            this.f67bitmap = Bitmap.createBitmap(tmp, this.fbo.Width, this.fbo.Height, Config.ARGB_8888);
+            this.imageBitmap = Bitmap.createBitmap(tmp, this.fbo.Width, this.fbo.Height, Config.ARGB_8888);
         }
         this.fbo.End();
         this.cursor.Draw(true);
