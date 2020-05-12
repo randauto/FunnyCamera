@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:padding="4dp" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_vertical_margin" android:layout_width="match_parent" android:layout_height="match_parent">
+    <view android:id="@+id/view" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_above="@+id/horizontalScrollView" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:layout_alignParentRight="true" class="com.ho.ho.magcamera.MagGlSurface"/>
+    <TextView android:textAppearance="?android:attr/textAppearanceMedium" android:textColor="#ffffff00" android:linksClickable="true" android:id="@+id/textView_FPS" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="？" android:layout_alignParentLeft="true" android:layout_alignParentRight="true"/>
+    <CheckBox android:id="@+id/checkBox網格" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="false" android:text="網格" android:layout_alignRight="@+id/view" android:layout_alignBottom="@+id/view"/>
+    <HorizontalScrollView android:id="@+id/horizontalScrollView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="false" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" android:layout_alignWithParentIfMissing="false">
+        <LinearLayout android:orientation="horizontal" android:id="@+id/linearLayout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:weightSum="1" android:layout_above="@+id/checkBox網格" android:layout_alignParentLeft="true" android:layout_alignParentRight="true">
+            <ImageButton android:id="@+id/imageButton_change_camera" android:background="@drawable/camera" android:layout_width="64dp" android:layout_height="64dp" android:layout_margin="2dp" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:onClick="OnCameraChange"/>
+            <ImageButton android:id="@+id/imageButton_pause" android:background="@drawable/pause" android:layout_width="64dp" android:layout_height="64dp" android:layout_margin="2dp" android:layout_toRightOf="@+id/imageButton_change_camera" android:layout_above="@+id/textView_FPS" android:layout_alignParentTop="true" android:onClick="OnPause"/>
+            <view android:id="@+id/imageButton凸" android:background="@drawable/zoom_in" android:layout_width="64dp" android:layout_height="64dp" android:onClick="On凸" class="com.ho.ho.holib.ImageButtonPlus"/>
+            <view android:id="@+id/imageButton凹" android:background="@drawable/zoom_out" android:layout_width="64dp" android:layout_height="64dp" android:onClick="On凹" class="com.ho.ho.holib.ImageButtonPlus"/>
+            <view android:id="@+id/imageButton拉扯" android:background="@drawable/grid_move" android:layout_width="64dp" android:layout_height="64dp" android:onClick="OnGridMove" class="com.ho.ho.holib.ImageButtonPlus"/>
+            <view android:id="@+id/imageButton扭轉" android:background="@drawable/rotation" android:layout_width="64dp" android:layout_height="64dp" android:onClick="On扭轉" class="com.ho.ho.holib.ImageButtonPlus"/>
+            <Button android:textSize="42dp" android:id="@+id/button原圖" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_margin="2dp" android:text="原"/>
+            <ImageButton android:id="@+id/imageButton_save" android:background="@drawable/save" android:layout_width="64dp" android:layout_height="64dp" android:onClick="OnSave"/>
+            <ImageButton android:id="@+id/imageButton_exit" android:background="@drawable/exit" android:layout_width="64dp" android:layout_height="64dp" android:onClick="OnExit"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+</RelativeLayout>
