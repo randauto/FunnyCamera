@@ -14,7 +14,6 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bip.funnycamera.MagGlSurface.MODE;
 import com.bip.funnycamera.lib.Camera;
@@ -44,10 +43,9 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(1);
-
+        setContentView(R.layout.activity_main);
         initPermission();
 
-        setContentView(R.layout.activity_main);
         this.mgs = findViewById(R.id.view);
         this.fps = findViewById(R.id.textView_FPS);
         findViewById(R.id.btnRestore).setOnClickListener(new View.OnClickListener() {
@@ -191,27 +189,27 @@ public class MainActivity extends Activity {
     public void onConvex(View v) {
         this.mgs.Mode = MODE.MODE_1;
         this.mgs.f68 = 0.001f;
-        m18(v);
+        changeStateView(v);
     }
 
     public void onConcave(View v) {
         this.mgs.Mode = MODE.MODE_2;
         this.mgs.f68 = -0.001f;
-        m18(v);
+        changeStateView(v);
     }
 
     public void OnGridMove(View v) {
         this.mgs.Mode = MODE.MODE_3;
         this.mgs.f68 = 0.0f;
-        m18(v);
+        changeStateView(v);
     }
 
     public void Reverse(View v) {
         this.mgs.Mode = MODE.MODE_4;
-        m18(v);
+        changeStateView(v);
     }
 
-    private void m18(View v) {
+    private void changeStateView(View v) {
         for (int i = 0; i < this.btns.length; i++) {
             this.btns[i].isEnabled = this.btns[i] == v;
             this.btns[i].invalidate();
@@ -244,6 +242,16 @@ public class MainActivity extends Activity {
 
     public void OnSave(View v) {
         this.mgs.f17 = true;
-        Toast.makeText(this, "Đã lưu", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(getString(R.string.app_name));
+        builder.setMessage(R.string.txt_alert_save_image);
+        builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 }
