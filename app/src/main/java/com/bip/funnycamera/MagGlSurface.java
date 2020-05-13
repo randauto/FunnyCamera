@@ -149,7 +149,7 @@ public class MagGlSurface extends HoGLSurfaceView {
                     case 3:
                         this.mCamera.m7(this.Touch1X, this.Touch1Y);
                         break;
-                    case BuildConfig.VERSION_CODE /*4*/:
+                    case 4:
                         this.Touch2X = this.Touch1X;
                         this.Touch2Y = this.Touch1Y;
                         break;
@@ -173,7 +173,7 @@ public class MagGlSurface extends HoGLSurfaceView {
                             }
                             this.mCamera.mo10(this.Touch1X, this.Touch1Y, f61);
                             break;
-                        case BuildConfig.VERSION_CODE /*4*/:
+                        case 4:
                             this.cursor.m10set(this.Touch1X, this.Touch1Y);
                             if (cnt <= 1) {
                                 this.cursor.m9set(this.Touch1X, this.Touch1Y);
@@ -191,7 +191,7 @@ public class MagGlSurface extends HoGLSurfaceView {
                 this.f64Touch2X = this.Touch2X;
                 this.f65Touch2Y = this.Touch2Y;
                 switch (C00071.$SwitchMap$com$ho$ho$magcamera$MagGlSurface$MODE[this.Mode.ordinal()]) {
-                    case BuildConfig.VERSION_CODE /*4*/:
+                    case 4:
                         this.mCamera.m6(this.Touch1X, this.Touch1Y, this.Touch2X, this.Touch2Y);
                         break;
                 }
