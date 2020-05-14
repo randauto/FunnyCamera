@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.bip.funnycamera.MagGlSurface.MODE;
 import com.bip.funnycamera.lib.Camera;
 import com.bip.funnycamera.lib.HoTimer;
 import com.bip.funnycamera.lib.ImageButtonPlus;
+import com.bip.utils.ViewUtils;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -41,15 +43,26 @@ public class MainActivity extends Activity {
 
     private MagGlSurface mgs;
 
+    private boolean switchCamera = false;
+    private boolean isPause = false;
+
+    private ImageView imageButtonChangeCamera;
+    private ImageView imageButtonSave;
+    private ImageView imageButtonPause;
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(1);
 
         initPermission();
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_v2);
         this.mgs = findViewById(R.id.view);
         this.fps = findViewById(R.id.textView_FPS);
+        imageButtonChangeCamera = (ImageView) findViewById(R.id.imageButton_change_camera);
+        imageButtonSave = (ImageView) findViewById(R.id.imageButton_save);
+        imageButtonPause = (ImageView) findViewById(R.id.imageButton_pause);
         findViewById(R.id.btnRestore).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,19 +83,50 @@ public class MainActivity extends Activity {
     }
 
     private void initView() {
-        findViewById(R.id.imageButton_change_camera).setOnClickListener(new View.OnClickListener() {
+
+        ViewUtils.clickViewsAnim(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (switchCamera) {
+                    switchCamera = false;
+                    imageButtonChangeCamera.animate().rotation(360).start();
+                } else {
+                    switchCamera = true;
+                    imageButtonChangeCamera.animate().rotation(180).start();
+                }
                 OnCameraChange();
             }
-        });
+        }, imageButtonSave);
 
-        findViewById(R.id.imageButton_pause).setOnClickListener(new View.OnClickListener() {
+        ViewUtils.clickViewsAnim(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OnPause();
+
             }
-        });
+        }, imageButtonSave);
+
+
+        ViewUtils.clickViewsAnim(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isPause) {
+                    isPause = true;
+                    imageButtonPause.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause));
+                } else {
+                    isPause = false;
+                    imageButtonPause.setImageDrawable(getResources().getDrawable(R.drawable.ic_play));
+                }
+                onPause();
+            }
+        }, imageButtonPause);
+
+
+//        findViewById(R.id.imageButton_pause).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                OnPause();
+//            }
+//        });
     }
 
     private void initPermission() {
@@ -243,6 +287,7 @@ public class MainActivity extends Activity {
     }
 
     public void OnSave(View v) {
+
         this.mgs.f17 = true;
         Toast.makeText(this, "Đã lưu", Toast.LENGTH_SHORT).show();
     }
